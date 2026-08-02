@@ -41,8 +41,11 @@ const CinematicCamera: React.FC<CinematicCameraProps> = ({ scrollProgress, mouse
     const currentLookAt = new THREE.Vector3(0, 0, -1).applyQuaternion(camera.quaternion).add(camera.position);
     currentLookAt.lerp(targetLook.current, delta * 1.55);
     camera.lookAt(currentLookAt);
-    camera.fov = THREE.MathUtils.lerp(camera.fov, 60 + easedProgress * 4, delta * 0.8);
-    camera.updateProjectionMatrix();
+    if ((camera as THREE.PerspectiveCamera).isPerspectiveCamera) {
+  const perspCamera = camera as THREE.PerspectiveCamera;
+  perspCamera.fov = THREE.MathUtils.lerp(perspCamera.fov, 60 + easedProgress * 4, delta * 0.8);
+  perspCamera.updateProjectionMatrix();
+}
   });
 
   return null;
