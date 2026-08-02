@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@1,400;1,500;1,600;1,700&display=swap');
+@import 'tailwindcss';
+
+:root {
+  --bg: #090909;
+  --panel: rgba(29, 27, 22, 0.55);
+  --panel-solid: #1D1B16;
+  --ink: #F5E6C8;
+  --ink-dim: #c9b790;
+  --line: rgba(176, 141, 87, 0.28);
+  --accent: #B08D57;
+  --accent-dim: #3A2F1F;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  font-style: italic;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: var(--bg);
+}
+
+h1, h2, h3, h4, h5, h6, .font-serif {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  letter-spacing: -0.02em;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-dim);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-style: normal;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes glow {
+  0% { text-shadow: 0 0 10px var(--accent-dim); box-shadow: 0 0 10px var(--accent-dim); }
+  50% { text-shadow: 0 0 20px var(--accent); box-shadow: 0 0 20px var(--accent); }
+  100% { text-shadow: 0 0 10px var(--accent-dim); box-shadow: 0 0 10px var(--accent-dim); }
+}
+
+@keyframes blackhole-spin {
+  from { transform: scaleY(0.32) rotate(0deg); }
+  to { transform: scaleY(0.32) rotate(360deg); }
+}
+
+.blackhole-ring {
+  animation: blackhole-spin 16s linear infinite;
+  will-change: transform;
+}
+
+.cursor-glow {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(176,141,87,0.15) 0%, transparent 60%);
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  mix-blend-mode: screen;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
